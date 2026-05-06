@@ -24,3 +24,5 @@ env/
 .cursor/
 
 # Data files (keep reproducible pipeline outputs in code, not bulky raw files)
+data/raw/
+
