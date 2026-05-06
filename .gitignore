@@ -28,5 +28,3 @@ data/raw/*.csv
 data/raw/*.xlsx
 data/raw/*.parquet
 data/processed/*.parquet
-data/processed/*.csv
-data/processed/*.duckdb
