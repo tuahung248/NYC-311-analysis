@@ -1,0 +1,11 @@
+{
+  "rows_clean": "9848824",
+  "unique_keys": "9848824",
+  "created_min": "2022-01-01 00:00:00",
+  "created_max": "2025-01-01 23:44:39",
+  "neg_duration_rows": "0",
+  "missing_agency_pct": "0.0",
+  "missing_complaint_pct": "0.0",
+  "run_id": "4b0bc154",
+  "pipeline_date": "2026-05-02 00:00:00"
+}

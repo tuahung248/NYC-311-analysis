@@ -28,16 +28,5 @@ data/raw/*.csv
 data/raw/*.xlsx
 data/raw/*.parquet
 data/processed/*.parquet
-data/processed/*.html
 data/processed/*.csv
-data/processed/*.json
 data/processed/*.duckdb
-data/processed/*.wal
-.DS_Store
-.venv/
-.vscode/
-.cursor/
-*.pyc
-__pycache__/
-data/raw/*.csv
-data/raw/*.xlsx
