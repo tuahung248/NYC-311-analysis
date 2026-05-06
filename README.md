@@ -18,7 +18,7 @@ The repository is designed for reproducibility: every cleaning exclusion is logg
 ## Data Source and Scope
 
 - **Source dataset:** [NYC Open Data - 311 Service Requests from 2020 to Present](https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2020-to-Present/erm2-nwe9/about_data)
-- **Raw file used in this repo:** `data/raw/311_Service_Requests_from_2020_to_Present_20260502.csv`
+- **Raw file used in this repo:** `data/raw_dataset/311_Service_Requests_from_2020_to_Present_20260502.csv.zip`
 - **Analytical window:** 2022-01-01 to 2025-12-31
 
 > [!NOTE]
@@ -33,8 +33,8 @@ NYC311/
 ├── codebook/
 │   └── category_mapping.csv
 ├── data/
-│   ├── raw/
-│   │   └── 311_Service_Requests_from_2020_to_Present_20260502.csv
+│   ├── raw_dataset/
+│   │   └── 311_Service_Requests_from_2020_to_Present_20260502.csv.zip
 │   ├── reference/
 │   │   └── acs_zip_income_quartiles.csv
 │   └── processed/
