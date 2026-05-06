@@ -1,7 +1,4 @@
--- 02_taxonomy.sql
 -- Purpose: Load complaint taxonomy mapping and categorize cleaned 311 records.
--- Inputs: clean_311 table, codebook/category_mapping.csv
--- Output: category_map table, clean_311_categorized view
 
 CREATE OR REPLACE TABLE category_map AS
 SELECT

@@ -1,10 +1,6 @@
--- 03_analysis.sql
 -- Purpose: Build analysis-ready views for volume, agency benchmarking, and equity checks.
--- Inputs: clean_311_categorized view, data/reference/acs_zip_income_quartiles.csv
--- Outputs: vw_volume_by_category_borough_month, vw_agency_resolution_benchmark, vw_equity_borough_income_quartile
 
 CREATE OR REPLACE VIEW vw_volume_by_category_borough_month AS
--- NOTE: under-reporting bias likely in low-income areas; attach caveat to all geographic charts in dashboard.
 SELECT
   operational_category,
   borough,
@@ -28,7 +24,6 @@ FROM clean_311_categorized
 GROUP BY 1, 2;
 
 CREATE OR REPLACE VIEW vw_equity_borough_income_quartile AS
--- NOTE: under-reporting bias likely in low-income areas; attach caveat to all geographic charts in dashboard.
 WITH acs AS (
   SELECT
     zip_code::VARCHAR AS zip_code,

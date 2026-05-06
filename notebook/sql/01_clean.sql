@@ -1,7 +1,4 @@
--- 01_clean.sql
 -- Purpose: Load cleaned parquet output from the notebook and apply final SQL-side filters.
--- Input: data/processed/311_clean_2022_2025.parquet
--- Output: clean_311 table
 
 CREATE OR REPLACE TABLE clean_311 AS
 SELECT *

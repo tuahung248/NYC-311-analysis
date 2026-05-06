@@ -1,7 +1,4 @@
--- 04_qa.sql
 -- Purpose: Run compact QA audits for row counts, nulls, duration sanity, and taxonomy coverage.
--- Inputs: clean_311, clean_311_categorized
--- Outputs: qa_* views
 
 CREATE OR REPLACE VIEW qa_row_counts AS
 SELECT 'clean_311' AS stage_name, count(*) AS row_count FROM clean_311
