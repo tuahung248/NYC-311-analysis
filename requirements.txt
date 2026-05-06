@@ -1,0 +1,11 @@
+jupyter
+ipykernel
+pandas
+numpy
+matplotlib
+seaborn
+plotly
+scikit-learn
+openpyxl
+ydata-profiling
+duckdb
