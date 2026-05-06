@@ -4,3 +4,4 @@
 data/reference/*.csv -filter -diff -merge text
 *.xlsx filter=lfs diff=lfs merge=lfs -text
 *.parquet filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
