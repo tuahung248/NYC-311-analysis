@@ -24,7 +24,3 @@ env/
 .cursor/
 
 # Data files (keep reproducible pipeline outputs in code, not bulky raw files)
-data/raw/*.csv
-data/raw/*.xlsx
-data/raw/*.parquet
-data/processed/*.parquet
