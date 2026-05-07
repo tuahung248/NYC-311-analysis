@@ -44,6 +44,7 @@ NYC311/
 ├── EDA - SQL scripts/
 │   ├── nyc311_cleaning.ipynb
 │   └── sql/
+│       ├── 00_reference.sql
 │       ├── 01_clean.sql
 │       ├── 02_taxonomy.sql
 │       ├── 03_analysis.sql
@@ -89,6 +90,7 @@ Expected outputs:
 
 ```bash
 cd "/Users/tuanhung/Documents/GitHub/NYC311"
+duckdb data/processed/nyc311.duckdb < "EDA - SQL scripts/sql/00_reference.sql"
 duckdb data/processed/nyc311.duckdb < "EDA - SQL scripts/sql/01_clean.sql"
 duckdb data/processed/nyc311.duckdb < "EDA - SQL scripts/sql/02_taxonomy.sql"
 duckdb data/processed/nyc311.duckdb < "EDA - SQL scripts/sql/03_analysis.sql"
@@ -96,11 +98,23 @@ duckdb data/processed/nyc311.duckdb < "EDA - SQL scripts/sql/04_qa.sql"
 duckdb data/processed/nyc311.duckdb < "EDA - SQL scripts/sql/05_checks.sql"
 ```
 
+`05_checks.sql` ends with a hard QA gate (`error()` on breach) so the
+process exits non-zero if any of these invariants fail:
+
+- all required tables/views are present in `main`
+- `unmapped_pct <= 5` (taxonomy coverage)
+- `negative_duration_pct = 0` (no closed-before-created records)
+
 ## Core SQL Outputs
+
+Reference tables (staged once, joined many times):
+
+- `acs_zip_income_quartiles`
 
 Analytical views:
 
 - `vw_volume_by_category_borough_month`
+- `vw_pareto_categories`
 - `vw_agency_resolution_benchmark`
 - `vw_equity_borough_income_quartile`
 
