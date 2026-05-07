@@ -11,17 +11,25 @@ FROM clean_311_categorized
 GROUP BY 1, 2, 3, 4;
 
 CREATE OR REPLACE VIEW vw_agency_resolution_benchmark AS
+WITH benchmark_base AS (
+  SELECT
+    agency,
+    operational_category,
+    count(*) FILTER (WHERE closed_ts IS NOT NULL) AS closed_request_count,
+    median(resolution_minutes) FILTER (WHERE closed_ts IS NOT NULL) AS median_resolution_minutes
+  FROM clean_311_categorized
+  GROUP BY 1, 2
+)
 SELECT
   agency,
   operational_category,
-  count(*) FILTER (WHERE closed_ts IS NOT NULL) AS closed_request_count,
-  median(resolution_minutes) FILTER (WHERE closed_ts IS NOT NULL) AS median_resolution_minutes,
+  closed_request_count,
+  median_resolution_minutes,
   PERCENT_RANK() OVER (
     PARTITION BY operational_category
-    ORDER BY median(resolution_minutes) FILTER (WHERE closed_ts IS NOT NULL)
+    ORDER BY median_resolution_minutes
   ) AS workload_normalized_resolution_rank
-FROM clean_311_categorized
-GROUP BY 1, 2;
+FROM benchmark_base;
 
 CREATE OR REPLACE VIEW vw_equity_borough_income_quartile AS
 WITH acs AS (
@@ -32,10 +40,11 @@ WITH acs AS (
 )
 SELECT
   c.borough,
-  a.income_quartile,
+  c.operational_category,
+  coalesce(a.income_quartile::VARCHAR, 'UNKNOWN') AS income_quartile,
   count(*) FILTER (WHERE c.closed_ts IS NOT NULL) AS closed_request_count,
   median(c.resolution_minutes) FILTER (WHERE c.closed_ts IS NOT NULL) AS median_resolution_minutes
 FROM clean_311_categorized c
 LEFT JOIN acs a
   ON left(coalesce(c.incident_zip, ''), 5) = a.zip_code
-GROUP BY 1, 2;
+GROUP BY 1, 2, 3;

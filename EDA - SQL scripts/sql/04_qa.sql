@@ -5,9 +5,21 @@ SELECT 'clean_311' AS stage_name, count(*) AS row_count FROM clean_311
 UNION ALL
 SELECT 'clean_311_categorized' AS stage_name, count(*) AS row_count FROM clean_311_categorized;
 
+CREATE OR REPLACE VIEW qa_descriptor_override_map_row_count AS
+SELECT count(*) AS descriptor_override_row_count
+FROM descriptor_override_map;
+
 CREATE OR REPLACE VIEW qa_negative_duration AS
 SELECT
-  count(*) FILTER (WHERE closed_ts IS NOT NULL AND closed_ts < created_ts) AS negative_duration_count
+  count(*) FILTER (WHERE closed_ts IS NOT NULL AND closed_ts < created_ts) AS negative_duration_count,
+  count(*) FILTER (WHERE closed_ts IS NOT NULL) AS closed_request_count,
+  CASE
+    WHEN count(*) FILTER (WHERE closed_ts IS NOT NULL) = 0 THEN 0.0
+    ELSE (
+      count(*) FILTER (WHERE closed_ts IS NOT NULL AND closed_ts < created_ts)::DOUBLE
+      / count(*) FILTER (WHERE closed_ts IS NOT NULL)::DOUBLE
+    ) * 100
+  END AS negative_duration_pct
 FROM clean_311;
 
 CREATE OR REPLACE VIEW qa_null_audit AS
@@ -22,7 +34,15 @@ FROM clean_311_categorized;
 
 CREATE OR REPLACE VIEW qa_unmapped_complaints AS
 SELECT
-  count(*) FILTER (WHERE operational_category = 'OTHER') AS unmapped_count
+  count(*) FILTER (WHERE operational_category = 'OTHER') AS unmapped_count,
+  count(*) AS total_count,
+  CASE
+    WHEN count(*) = 0 THEN 0.0
+    ELSE (
+      count(*) FILTER (WHERE operational_category = 'OTHER')::DOUBLE
+      / count(*)::DOUBLE
+    ) * 100
+  END AS unmapped_pct
 FROM clean_311_categorized;
 
 CREATE OR REPLACE VIEW qa_top20_unmapped_values AS

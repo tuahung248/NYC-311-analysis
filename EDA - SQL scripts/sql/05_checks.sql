@@ -16,15 +16,18 @@ FROM (
       'vw_agency_resolution_benchmark',
       'vw_equity_borough_income_quartile',
       'qa_row_counts',
+      'qa_descriptor_override_map_row_count',
       'qa_negative_duration',
       'qa_null_audit',
       'qa_unmapped_complaints',
       'qa_top20_unmapped_values',
       'qa_created_ts_coverage'
     )
-) ready_objects;
+) ready_objects
+HAVING count(*) < 13;
 
 SELECT * FROM qa_row_counts;
+SELECT * FROM qa_descriptor_override_map_row_count;
 SELECT * FROM qa_negative_duration;
 SELECT * FROM qa_null_audit;
 SELECT * FROM qa_unmapped_complaints;
