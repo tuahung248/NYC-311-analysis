@@ -21,5 +21,6 @@ dashboard/app/.vite/
 dashboard/app/*.tsbuildinfo
 dashboard/app/vite.config.js
 dashboard/app/vite.config.d.ts
+dashboard/build
 *.log
 
