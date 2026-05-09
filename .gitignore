@@ -1,28 +1,25 @@
-# OS files
 .DS_Store
-
-# Python artifacts
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 .pytest_cache/
 .ipynb_checkpoints/
-
-# Virtual environments
 .venv/
 venv/
 env/
-
-# Local environment config
 .python-version
 .env
 .env.*
-
-# Editor/IDE local settings
 .vscode/
 .cursor/
-
-# Data files (keep reproducible pipeline outputs in code, not bulky raw files)
 data/raw/
+dashboard/app/node_modules/
+dashboard/app/dist/
+dashboard/app/dist-ssr/
+dashboard/app/.vite/
+dashboard/app/*.tsbuildinfo
+dashboard/app/vite.config.js
+dashboard/app/vite.config.d.ts
+*.log
 
