@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-05-09T11:43:28.326136+00:00",
+  "duckdb_path": "data/processed/nyc311.duckdb",
+  "sql_path": "EDA - SQL scripts/sql/06_dashboard_layer.sql",
+  "extracts": [
+    {
+      "view": "dash_kpi_header",
+      "path": "dashboard/extracts/dash_kpi_header.csv",
+      "row_count": 1
+    },
+    {
+      "view": "dash_pareto",
+      "path": "dashboard/extracts/dash_pareto.csv",
+      "row_count": 19
+    },
+    {
+      "view": "dash_priority_signals",
+      "path": "dashboard/extracts/dash_priority_signals.csv",
+      "row_count": 19
+    },
+    {
+      "view": "dash_priority_callouts",
+      "path": "dashboard/extracts/dash_priority_callouts.csv",
+      "row_count": 5
+    },
+    {
+      "view": "dash_monthly_trend",
+      "path": "dashboard/extracts/dash_monthly_trend.csv",
+      "row_count": 3878
+    },
+    {
+      "view": "dash_agency_benchmark",
+      "path": "dashboard/extracts/dash_agency_benchmark.csv",
+      "row_count": 65
+    },
+    {
+      "view": "dash_equity_heatmap",
+      "path": "dashboard/extracts/dash_equity_heatmap.csv",
+      "row_count": 482
+    },
+    {
+      "view": "dash_qa_summary",
+      "path": "dashboard/extracts/dash_qa_summary.csv",
+      "row_count": 5
+    }
+  ]
+}

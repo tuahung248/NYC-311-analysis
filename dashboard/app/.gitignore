@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+
+src/data/*.json
+!src/data/.gitkeep
+
+.vite
+*.log
