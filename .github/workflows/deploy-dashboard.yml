@@ -47,8 +47,9 @@ jobs:
           path: dashboard/app/dist
 
   deploy:
+    # Display name in the repo "Deployments" sidebar (deploy-pages allows custom names; default is github-pages).
     environment:
-      name: github-pages
+      name: Dashboard
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
