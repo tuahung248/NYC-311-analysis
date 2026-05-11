@@ -2,8 +2,7 @@
 
 End-to-end analytics on NYC 311 service requests: cleaning and taxonomy in Python/SQL, DuckDB analytical views, CSV extracts, and a **static React dashboard** published for stakeholders.
 
-> [!TIP]
-> **Live dashboard (GitHub Pages):** [https://tuahung248.github.io/NYC311/](https://tuahung248.github.io/NYC311/) — use hash routes, e.g. [`…/NYC311/#/triage`](https://tuahung248.github.io/NYC311/#/triage).
+> **Live dashboard (GitHub Pages):** [https://tuahung248.github.io/NYC311/](https://tuahung248.github.io/NYC311/) — use hash routes
 
 ## What this repository delivers
 
