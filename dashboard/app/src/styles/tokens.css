@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --neutral-text: #1f1f1f;
+  --neutral-grid: #d9d9d9;
+  --neutral-muted: #8c8c8c;
+  --neutral-soft: #f4f4f5;
+
+  --accent-blue: #0072b2;
+  --accent-orange: #e69f00;
+
+  --state-stable: #56b4e9;
+  --state-watch: #e69f00;
+  --state-critical: #d55e00;
+  --state-insufficient: #999999;
+
+  --equity-fast: #0072b2;
+  --equity-slow: #d55e00;
+
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #fafafa;
+  color: var(--neutral-text);
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Recharts axis defaults to satisfy 11px tick / 12px label minimums */
+.recharts-cartesian-axis-tick text {
+  font-size: 11px;
+  fill: var(--neutral-text);
+}
+.recharts-cartesian-axis-line,
+.recharts-cartesian-axis-tick-line {
+  stroke: var(--neutral-grid);
+}
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+/* Scrollbar polish */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #d9d9d9;
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@layer components {
+  .card {
+    @apply rounded-lg border border-ink-grid bg-white shadow-sm;
+  }
+  .card-header {
+    @apply flex items-center justify-between border-b border-ink-grid px-4 py-3;
+  }
+  .card-title {
+    @apply text-sm font-semibold tracking-wide text-ink;
+  }
+  .card-subtle {
+    @apply text-xs text-ink-muted;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-xs font-medium;
+  }
+}
+
+/* Print/PDF rendering safety net.
+ * Recharts <ResponsiveContainer> measures its parent at mount time and can
+ * collapse to 0x0 when the page is rasterised by a headless browser or print
+ * engine that never paints the live viewport. The bar chart on Page 2 was
+ * silently disappearing in PDF exports for that reason. Forcing a minimum
+ * height on the recharts wrappers keeps the chart visible even when the
+ * container reports height: 0 at print time. */
+@media print {
+  body {
+    background: #ffffff;
+  }
+  .recharts-responsive-container,
+  .recharts-wrapper {
+    min-height: 320px !important;
+    width: 100% !important;
+    page-break-inside: avoid;
+  }
+  .recharts-surface {
+    overflow: visible !important;
+  }
+}
