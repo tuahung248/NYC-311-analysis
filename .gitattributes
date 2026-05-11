@@ -5,3 +5,7 @@ data/reference/*.csv -filter -diff -merge text
 *.xlsx filter=lfs diff=lfs merge=lfs -text
 *.parquet filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
+
+# Vite entry HTML must be a normal blob: GitHub Pages does not resolve LFS pointers;
+# CI checkout without LFS would copy the pointer into dist/index.html.
+dashboard/app/**/*.html -filter -diff -merge text
