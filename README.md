@@ -74,7 +74,10 @@ NYC311/
 │   ├── extracts/                # dash_*.csv (dashboard data contract)
 │   └── app/                     # React + Vite frontend
 └── docs/
+    └── executive_summary.pdf   # start here — one-page "so what" for reviewers
 ```
+
+> **Reviewer entry point:** [`docs/executive_summary.pdf`](docs/executive_summary.pdf) — ranked priorities and business narrative before the technical pipeline below (regenerate: `python scripts/build_executive_summary_pdf.py`).
 
 ## Pipeline stages (summary)
 
